@@ -28,9 +28,14 @@
 <body>
 
     <div id="root">
+        <ul>
+            <li v-for="item in shoplist" v-text="item"></li>
+            <!-- OR <li v-for="item in shoplist">{{item}}</li>-->
+        </ul>
 
+        <input id="inputItem" type="text" v-model="newItem">
+        <button id="btn" v-on:click="addItem">Add item</button>
         
-
     </div>
 
     <script>
@@ -39,9 +44,30 @@
             el: '#root',
 
             data: {
-                
-            }
-        })
+                newItem: '',
+                shoplist: ['Salad', 'Eggs', 'Apples', 'Chicken']
+            },
+            methods: {
+                addItem() {
+                    this.shoplist.push(this.newItem);
+                    //Clear text
+                    this.newItem = ' ';
+                }
+            },
+            // Using mounted
+            // mounted() {
+            //     //Create event listener for button using vanilla JS
+            //     document.querySelector("#btn").addEventListener('click', () => {
+            //         let item = document.querySelector("#inputItem");
+            //         app.shoplist.push(item.value);
+
+            //         // Clear text in text box 
+            //         item.value = ' ';           
+            // });
+            // }
+        });
+
+
     </script>
     
 </body>
